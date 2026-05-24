@@ -1,0 +1,172 @@
+[
+  {
+    "id": 1,
+    "name": "OpenAI News",
+    "platform": "openai",
+    "source": "rss",
+    "url": "https://openai.com/news/rss.xml",
+    "signal_level": "S",
+    "company": "OpenAI"
+  },
+  {
+    "id": 2,
+    "name": "GitHub Blog",
+    "platform": "github-blog",
+    "source": "rss",
+    "url": "https://github.blog/feed/",
+    "signal_level": "S",
+    "company": "GitHub"
+  },
+  {
+    "id": 3,
+    "name": "Microsoft DevBlogs",
+    "platform": "microsoft-devblogs",
+    "source": "rss",
+    "url": "https://devblogs.microsoft.com/feed",
+    "signal_level": "S",
+    "company": "Microsoft"
+  },
+  {
+    "id": 4,
+    "name": "Google AI Blog",
+    "platform": "google-ai",
+    "source": "rss",
+    "url": "https://blog.google/technology/ai/rss/",
+    "signal_level": "S",
+    "company": "Google"
+  },
+  {
+    "id": 5,
+    "name": "AWS News Blog",
+    "platform": "aws-news",
+    "source": "rss",
+    "url": "https://aws.amazon.com/blogs/aws/feed/",
+    "signal_level": "A",
+    "company": "Amazon"
+  },
+  {
+    "id": 6,
+    "name": "NVIDIA Blog",
+    "platform": "nvidia",
+    "source": "rss",
+    "url": "https://blogs.nvidia.com/feed/",
+    "signal_level": "A",
+    "company": "NVIDIA"
+  },
+  {
+    "id": 7,
+    "name": "Apple Developer News",
+    "platform": "apple-developer",
+    "source": "rss",
+    "url": "https://developer.apple.com/news/rss/news.rss",
+    "signal_level": "A",
+    "company": "Apple"
+  },
+  {
+    "id": 8,
+    "name": "Cloudflare Blog",
+    "platform": "cloudflare",
+    "source": "rss",
+    "url": "https://blog.cloudflare.com/rss/",
+    "signal_level": "A",
+    "company": "Cloudflare"
+  },
+  {
+    "id": 9,
+    "name": "DeepMind Blog",
+    "platform": "deepmind",
+    "source": "rss",
+    "url": "https://deepmind.google/blog/rss.xml",
+    "signal_level": "A",
+    "company": "Google DeepMind"
+  },
+  {
+    "id": 10,
+    "name": "Hugging Face Blog",
+    "platform": "huggingface",
+    "source": "rss",
+    "url": "https://huggingface.co/blog/feed.xml",
+    "signal_level": "A",
+    "company": "Hugging Face"
+  },
+  {
+    "id": 11,
+    "name": "Hacker News",
+    "platform": "hackernews",
+    "source": "rss",
+    "url": "https://news.ycombinator.com/rss",
+    "signal_level": "A"
+  },
+  {
+    "id": 12,
+    "name": "Product Hunt",
+    "platform": "producthunt",
+    "source": "rss",
+    "url": "https://www.producthunt.com/feed",
+    "signal_level": "A"
+  },
+  {
+    "id": 13,
+    "name": "TechCrunch",
+    "platform": "techcrunch",
+    "source": "rss",
+    "url": "https://techcrunch.com/feed/",
+    "signal_level": "A"
+  },
+  {
+    "id": 14,
+    "name": "The Verge",
+    "platform": "theverge",
+    "source": "rss",
+    "url": "https://www.theverge.com/rss/index.xml",
+    "signal_level": "B"
+  },
+  {
+    "id": 15,
+    "name": "Ars Technica",
+    "platform": "arstechnica",
+    "source": "rss",
+    "url": "https://feeds.arstechnica.com/arstechnica/index",
+    "signal_level": "B"
+  },
+  {
+    "id": 16,
+    "name": "Wired",
+    "platform": "wired",
+    "source": "rss",
+    "url": "https://www.wired.com/feed/rss",
+    "signal_level": "B"
+  },
+  {
+    "id": 17,
+    "name": "MIT Technology Review",
+    "platform": "mit-technology-review",
+    "source": "rss",
+    "url": "https://www.technologyreview.com/feed/",
+    "signal_level": "B"
+  },
+  {
+    "id": 18,
+    "name": "InfoQ",
+    "platform": "infoq",
+    "source": "rss",
+    "url": "https://feed.infoq.com/",
+    "signal_level": "B"
+  },
+  {
+    "id": 19,
+    "name": "Lobsters",
+    "platform": "lobsters",
+    "source": "rss",
+    "url": "https://lobste.rs/rss",
+    "signal_level": "B"
+  },
+  {
+    "id": 20,
+    "name": "Dev.to",
+    "platform": "devto",
+    "source": "rss",
+    "url": "https://dev.to/feed",
+    "signal_level": "B"
+  }
+]

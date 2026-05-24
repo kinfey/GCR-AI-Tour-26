@@ -1,0 +1,40 @@
+# Dependencies and build output
+node_modules/
+.next/
+dist/
+build/
+out/
+*.tsbuildinfo
+
+# Python caches and environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+ENV/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local editor and agent state
+.vscode/
+.idea/
+.sisyphus/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Generated lab outputs
+Lab-01-Tech-Insights/output/
+Lab-03-GitHub-Copilot/output/

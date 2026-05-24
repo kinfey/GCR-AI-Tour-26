@@ -1,0 +1,29 @@
+node_modules/
+.next/
+out/
+dist/
+*.tsbuildinfo
+.venv/
+
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Generated presentation artifacts
+output/assets/
+output/slides/
+output/*.pptx
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+output/

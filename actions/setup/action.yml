@@ -1,0 +1,13 @@
+name: "Setup Scripts (stub)"
+description: "Stub action to satisfy post-step cleanup. Real setup comes from github/gh-aw."
+inputs:
+  destination:
+    description: "Destination directory for scripts"
+    required: false
+    default: ""
+runs:
+  using: "composite"
+  steps:
+    - name: "No-op"
+      shell: bash
+      run: echo "Stub action - real setup already completed"

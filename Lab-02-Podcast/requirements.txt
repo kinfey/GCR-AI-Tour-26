@@ -1,0 +1,4 @@
+agent-framework
+agent-framework-orchestrations
+agent-framework-github-copilot
+python-dotenv
