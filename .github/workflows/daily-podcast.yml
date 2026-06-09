@@ -27,49 +27,19 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install GitHub Copilot CLI
-        run: |
-          npm install -g @github/copilot
-          command -v copilot
-          copilot --version
-
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt --pre
 
-      - name: Get topic from title.txt
-        id: get-topic
-        run: |
-          # 读取第一行主题
-          TOPIC=$(head -n 1 topic/title.txt)
-
-          if [ -z "$TOPIC" ]; then
-            echo "Error: No topic found in title.txt"
-            exit 1
-          fi
-
-          echo "Selected topic: $TOPIC"
-          echo "topic=$TOPIC" >> $GITHUB_OUTPUT
-
-          # 删除已使用的第一行，保留其余行
-          tail -n +2 topic/title.txt > topic/title.txt.tmp
-          mv topic/title.txt.tmp topic/title.txt
-
-          # 如果文件为空，添加提示信息
-          if [ ! -s topic/title.txt ]; then
-            echo "# 所有主题已处理完毕，请添加新的主题" > topic/title.txt
-          fi
-
       - name: Run podcast workflow
         env:
-          GH_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}  
+          GH_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
           GITHUB_COPILOT_MODEL: gpt-5.4
           GITHUB_COPILOT_TIMEOUT: "60"
-          GITHUB_COPILOT_CLI_PATH: copilot
           GITHUB_COPILOT_LOG_LEVEL: info
         run: |
-          python podcast_workflow.py -t "${{ steps.get-topic.outputs.topic }}"
+          python podcast_workflow.py
 
       - name: Commit and push changes
         working-directory: ${{ github.workspace }}
@@ -84,6 +54,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "🎙️ Generate podcast for: ${{ steps.get-topic.outputs.topic }}"
+            git commit -m "🎙️ Generate podcast: 世界杯的每日播报"
             git push
           fi
