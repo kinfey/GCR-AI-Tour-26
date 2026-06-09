@@ -3,7 +3,7 @@
 本仓库包含多个可运行 Lab，当前主要内容如下：
 
 - `Lab-01-Tech-Insights/`：基于新闻源的技术动态聚合与洞察 Lab
-- `Lab-02-Podcast/`：基于 GitHub Copilot 与 Microsoft Agent Framework 的自动化播客生成 Lab
+- `Lab-02-Podcast/`：基于爬虫 + GitHub Copilot 与 Microsoft Agent Framework 的《世界杯的每日播报》自动化播客生成 Lab
 - `Lab-03-GitHub-Copilot/`：围绕 GitHub Copilot 与 Copilot SDK 的 PPT 生成 Lab
 
 ## Lab-01-Tech-Insights（你将做什么）
@@ -31,24 +31,24 @@ gh workflow run tech-insight
 
 ## Lab-02-Podcast（你将做什么）
 
-这是一个基于 GitHub Copilot 与 Microsoft Agent Framework (MAF) 的「自动化播客生成」Lab：通过 MAF Workflow 编排多个 Agent，将话题列表自动转换为播客内容，并每日定时触发、提交结果。
+这是一个基于爬虫 + GitHub Copilot 与 Microsoft Agent Framework (MAF) 的「自动化播客生成」Lab，节目名为《世界杯的每日播报》：先用内置爬虫从央视体育抓取 5 条最新的美加墨世界杯新闻并提取正文，再通过 MAF Workflow 编排三个 Agent 串联生成双人对谈风格的播客内容，并每日定时触发、提交结果。
 
 你将体验：
-- 使用 GitHub Copilot 作为 LLM 提供方，结合 MAF Workflow 编排三个 Agent 串联生成播客对话内容
+- 使用 Python 标准库内置爬虫从 CCTV 抓取最新美加墨世界杯新闻并提取正文
+- 使用 GitHub Copilot 作为 LLM 提供方，结合 MAF Workflow 编排三个 Agent（爬取+大纲 → 脚本 → 润色）生成双人对谈播客内容
 - 通过 GitHub Actions 实现每日自动调度与内容发布
-- 管理话题队列（`topic/title.txt`），系统每次处理一个话题
 
 你将得到：
-- `podcast/` 目录下生成的播客内容文件
+- `podcast/` 目录下生成的《世界杯的每日播报》播客内容文件
 - 一套可本地运行也可托管于 GitHub Actions 的完整自动化流程
 
 - 入口文档：`Lab-02-Podcast/README.md`
-- 本地运行：先 `cd Lab-02-Podcast`，安装依赖后执行：
+- 本地运行：先 `cd Lab-02-Podcast`，安装依赖后直接执行（无需传入话题，脚本会自动爬取当日新闻）：
 
 ```bash
 cd Lab-02-Podcast
 pip install -r requirements.txt --pre
-python podcast_workflow.py -t "你的播客话题"
+python podcast_workflow.py
 ```
 
 ### 通过 GitHub Actions 触发
