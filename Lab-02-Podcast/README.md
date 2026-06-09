@@ -1,14 +1,14 @@
 # 播客工作流
 
-基于 Microsoft Agent Framework (MAF) 与 GitHub Copilot 的自动化播客生成系统。该工作流通过 MAF Workflow 编排三个 Agent，使用 GitHub Copilot 作为 LLM 提供方，自动生成关于 AI 与技术话题的播客内容。
+基于 Microsoft Agent Framework (MAF) 与 GitHub Copilot 的自动化播客生成系统。该工作流通过 MAF Workflow 编排三个 Agent，使用 GitHub Copilot 作为 LLM 提供方，自动生成《世界杯的每日播报》播客内容。
 
 ## 功能特性
 
 - **GitHub Copilot 驱动**：使用 `GitHubCopilotAgent` 作为 LLM 提供方，无需 Azure AI Foundry 资源
 - **MAF Workflow 编排**：使用 `WorkflowBuilder` 构建顺序执行的多 Agent 工作流
-- **三 Agent 串联**：搜索生成大纲 → 内容生成脚本 → 润色并保存最终脚本
+- **三 Agent 串联**：爬取新闻生成大纲 → 内容生成脚本 → 润色并保存最终脚本
+- **新闻爬虫**：从 CCTV 体育频道抓取最新美加墨世界杯新闻并提取正文，基于真实内容生成大纲
 - **流式事件输出**：实时输出工作流执行进度
-- **话题管理**：基于纯文本的话题队列管理机制
 
 ## 架构说明
 
@@ -20,7 +20,8 @@ WorkflowBuilder 顺序工作流：
 │  (podcast-search-   │    │  (podcast-content-   │    │  (podcast-script-    │
 │   agent)             │    │   agent)              │    │   agent)              │
 │                     │    │                      │    │                      │
-│ 根据主题生成大纲     │    │ 根据大纲生成脚本草稿  │    │ 润色并保存最终脚本    │
+│ 爬取世界杯新闻并生成 │    │ 根据大纲生成脚本草稿  │    │ 润色并保存最终脚本    │
+│ 大纲                 │    │                      │    │                      │
 └─────────────────────┘    └──────────────────────┘    └──────────────────────┘
          ▲                                                        │
          │                                                        ▼
@@ -62,32 +63,20 @@ cp .env.example .env
 
 | 变量名 | 说明 | 默认值 |
 |---|---|---|
-| `GITHUB_COPILOT_CLI_PATH` | Copilot CLI 可执行文件路径 | `copilot` |
 | `GITHUB_COPILOT_MODEL` | 使用的模型（如 `gpt-5.4`） | `gpt-5.4` |
 | `GITHUB_COPILOT_TIMEOUT` | 请求超时（秒） | `60` |
 | `GITHUB_COPILOT_LOG_LEVEL` | CLI 日志级别 | `info` |
 
-### 话题管理
-
-在 `topic/title.txt` 中添加话题，每行一个：
-```
-如何在工程中有效运用 GenAIOps
-学习 CUDA 编程的技巧
-全球文生视频模型横向对比
-你对 Agentic 工作流的看法
-Qwen 是最全面的开源模型吗？
-```
-
 ## 使用方式
 
-指定话题运行工作流：
+使用默认主题运行工作流：
 ```bash
-python podcast_workflow.py -t "你的播客话题"
+python podcast_workflow.py
 ```
 
 ## 工作流程
 
-1. **大纲生成**：`PodcastSearchExecutor` 调用 GitHub Copilot 生成播客大纲
+1. **爬取新闻并生成大纲**：`PodcastSearchExecutor` 从 CCTV 体育频道爬取 5 条最新美加墨世界杯新闻并读取正文，再调用 GitHub Copilot 基于真实内容生成播客大纲
 2. **脚本撰写**：`PodcastContentExecutor` 调用 GitHub Copilot 生成两人对话风格脚本
 3. **润色保存**：`PodcastScriptExecutor` 调用 GitHub Copilot 润色脚本并保存至 `podcast/` 目录
 
@@ -96,11 +85,10 @@ python podcast_workflow.py -t "你的播客话题"
 ```
 Lab-02-Podcast/
 ├── .env.example                  # 环境变量模板
+├── .env                          # 环境变量（本地）
 ├── podcast/                      # 生成的播客内容
 │   └── 2p_podcast_<uuid>.txt
-├── topic/
-│   └── title.txt                # 话题队列
-├── podcast_workflow.py          # 主工作流脚本（MAF Workflow + GitHub Copilot）
+├── podcast_workflow.py          # 主工作流脚本（爬虫 + MAF Workflow + GitHub Copilot）
 ├── requirements.txt             # Python 依赖
 └── README.md
 ```
